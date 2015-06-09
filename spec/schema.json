@@ -1,0 +1,37 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Schema",
+    "version": "0.0.1",
+    "description": "The Experiment Definition Specification is a project to describe 'an experiment' that is composed of an experiment goal, the means of the experiment, dataset where experimental results are stored and validation statements that are used to corroborate results.",
+    "required": [ "id", "specversion", "goal", "category", "experiments" ],
+    "properties": {
+        "id": {
+            "description": "The readable id of the definition.",
+            "type": "string",
+            "default": "null"
+        },
+        "specversion": {
+            "description": "The semantic version string of the Experiment Definition Specification used to describe the experiment. The value SHOULD be '0.0.1'.",
+            "type": "string",
+            "default": "0.0.1"
+        },
+        "goal": {
+            "description": "Experiment goals set the tone in which these falsifiable statements are treated. For an experiment that proves a concept or design, a validation clause has more weight than, say, an experiment that quantifies an expected overhead. For example, for a system that claims to achieve linear scalability, the corresponding validation clauses are more significant than those for an experiment that shows the overhead of a new file system implemented as a FUSE module. In the former, a failed validation invalidates the whole work while in the latter the failed test invalidates a minor aspect. In other words, some experiments evaluate a high-level claim while others refer to low-level aspects, hence the importance of looking at experiment goals while looking at validations; goals set the mindset of the reader or reviewer that validates the work whenever she encounters failed validations. This is the main motivation for having goals as an explicit entry on the ESF.",
+            "type": "string",
+            "default": "null"
+        },
+        "category": {
+            "description": "Category of the experiment goal. Exampels of this are 'proof_of_concept', 'overhead_quantification', 'decision-guiding', etc. In general, the goal specifies",
+            "type": "string",
+            "default": "null"
+        },
+        "experiments": {
+            "type": "array",
+            "items": {
+                "$ref": "file:experiment.json"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+        }
+    }
+}

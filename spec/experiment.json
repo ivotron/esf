@@ -1,0 +1,59 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Experiment",
+    "description": "",
+    "type": "object",
+    "required": ["id", "platform", "app", "resultsdataset", "validations"],
+    "properties": {
+        "id": {
+            "description": "The readable id of the experiment.",
+            "type": "string",
+            "default": "null"
+        },
+        "reference": {
+            "description": "Where the experiment appears.",
+            "type": "string",
+            "default": "null"
+        },
+        "tags": {
+            "type": "array",
+            "items": {
+                "tag": {
+                    "description": "tag to associate with this experiment.",
+                    "type": "string",
+                    "default": "null"
+                },
+            },
+        },
+        "platform": {
+            "description": "Any JSON goes here. For example, the output of SOSReport. This is the underlying hardware where the experiment gets deployed.",
+            "type": "object",
+        },
+        "app": {
+            "description": "The 'app' specification that defines the software artifacts that get deployed by a deployment engine (orchestrator) in the platform specified above. For example, the nulecule definition of a containerized experiment, the definition of a packer deployment, the spec to specify cloudlab. Regardless of the deployment tool (packer, cloudlab, etc.), the assumption is that the devices that are defined in the 'platform' entry get managed by something that understands how to deploy the experiment.",
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "description": "this define the source, can be 'packer', 'cloudlab', 'nulecule', 'etc.'",
+                },
+                "definition" : {
+                    "type": "object",
+                    "description": "Any JSON goes here."
+                }
+            }
+        },
+        "resultsdataset": {
+            "$ref": "file:db.json"
+        },
+        "validations": {
+            "type": "array",
+            "items": {
+                "validation": {
+                    "description": "validation string.",
+                    "type": "string",
+                },
+            },
+        }
+    }
+}

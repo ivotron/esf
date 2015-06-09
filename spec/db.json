@@ -1,0 +1,29 @@
+{
+    "$schema" : "http://json-schema.org/draft-04/schema#",
+    "title" : "Database configuration schema",
+    "description": "The configuration for a database storing results.",
+    "type" : "object",
+    "required" : ["system"],
+    "properties": {
+        "system" : {
+            "type" : "string",
+            "enum" : ["mysql", "pgsql", "sqlite", "influxdb", "csv", "json"]
+        },
+        "host" : {
+            "type" : "string",
+        },
+        "db" : {
+            "type" : "string",
+        },
+        "user" : {
+            "type" : "string",
+        },
+        "password" : {
+            "type" : "string",
+        },
+        "metricstable" : {
+            "type" : "string",
+        }
+    },
+    "additionalProperties" : false
+}
